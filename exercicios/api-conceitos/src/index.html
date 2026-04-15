@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testing Concepts Wiki</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">QA Wiki</div>
+    <nav>
+      <button onclick="navigate('home')" id="nav-home">Home</button>
+      <button onclick="navigate('geral')" id="nav-geral">Geral</button>
+      <button onclick="navigate('pesquisa')" id="nav-pesquisa">Pesquisa</button>
+      <button onclick="navigate('random')" id="nav-random">Random</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="view active">
+      <div class="hero">
+        <h1>Wiki de Testes de Software</h1>
+        <p>Bem-vindo ao glossário interativo de Qualidade de Software.</p>
+        <p>Este sistema consome uma API RESTful para apresentar conceitos cruciais de engenharia de software focados em testes, qualidade e arquitetura. Navegue pelo menu superior para explorar todos os conceitos, pesquisar termos específicos ou descobrir uma técnica aleatória.</p>
+        <button onclick="navigate('geral')" class="btn-primary">Começar a Explorar</button>
+      </div>
+    </section>
+
+    <section id="geral" class="view">
+      <h2>Todos os Conceitos</h2>
+      <div id="geral-container" class="grid-container">
+        </div>
+    </section>
+
+    <section id="pesquisa" class="view">
+      <h2>Pesquisar Conceitos</h2>
+      <input type="text" id="search-input" placeholder="Digite um termo, título ou palavra-chave..." onkeyup="handleSearch()">
+      <div id="pesquisa-container" class="grid-container">
+        </div>
+    </section>
+
+    <section id="random" class="view">
+      <h2>Conceito Aleatório</h2>
+      <button onclick="renderRandom()" class="btn-secondary">Girar Novamente</button>
+      <div id="random-container" class="single-container">
+        </div>
+    </section>
+
+    <section id="detalhe" class="view">
+      <button onclick="navigate('geral')" class="btn-back">← Voltar</button>
+      <div id="detalhe-container" class="single-container">
+        </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
