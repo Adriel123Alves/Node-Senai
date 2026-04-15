@@ -1,5 +1,9 @@
-    #ESTRUTURA DO OBJETO
-    
+
+## Estrutura do objeto
+
+260406: testados 2 get, post, put e delete, as rotas básicas
+
+```
     {
         "id": 0,
         "codigo": 0,
@@ -14,3 +18,4 @@
         ],
         "relacionados": []
     }
+```
