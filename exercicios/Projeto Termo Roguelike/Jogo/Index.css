@@ -1,0 +1,127 @@
+/* Importando uma fonte moderna do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+:root {
+    --bg-color: #121213;       
+    --text-color: #ffffff;   
+    --border-color: #3a3a3c; 
+    --correct-color: #3aa394;  
+    --wrong-place-color: #d3ad69; 
+    --not-found-color: #313131;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: 8px; 
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 40px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+input[type="text"] {
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 2rem;
+    text-transform: uppercase; 
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    letter-spacing: 15px; 
+    font-weight: bold;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--wrong-place-color);
+}
+
+button {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+button:active {
+    transform: scale(0.98); /* Efeitinho de clique */
+}
+
+/* Estilizando o feedback para parecerem blocos coloridos */
+p {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#correto {
+    background-color: var(--correct-color);
+}
+
+#errado {
+    background-color: var(--wrong-place-color);
+}
+
+#inexistente {
+    background-color: var(--not-found-color);
+}
+
+#tentativas {
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    text-align: center;
+    margin-top: 15px;
+    color: #888; 
+}
