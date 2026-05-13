@@ -177,26 +177,27 @@ function verificarPalpite() {
     if (palpite === palavraSecreta) {
         clearInterval(cronometro); 
         
+        // --- NOVIDADE: REVELAR OS ACENTOS NA TELA ---
+        for (let i = 0; i < TAMANHO_PALAVRA; i++) {
+            const quadrado = document.getElementById(`quadrado-${indexBase + i}`);
+            quadrado.innerText = palavraSecretaOriginal[i]; // Substitui pela letra com acento!
+        }
+        // --------------------------------------------
+
         const pontosGanhos = calcularPontosRodada(linhaAtual);
         pontuacaoTotal += pontosGanhos;
         document.getElementById('pontos-display').innerText = pontuacaoTotal;
 
-        // --- NOVA LÓGICA DE REDUÇÃO DE TEMPO (ROGUELIKE) ---
+        // Lógica de Redução de Tempo (Roguelike)
         let mensagemNivel = "";
         if (pontuacaoTotal >= proximoMarco) {
             if (tempoInicial > tempoMinimo) {
                 tempoInicial -= reducaoDeTempo;
-                
-                // Garante que o tempo não desce abaixo do mínimo permitido
-                if (tempoInicial < tempoMinimo) {
-                    tempoInicial = tempoMinimo;
-                }
-                
+                if (tempoInicial < tempoMinimo) tempoInicial = tempoMinimo;
                 mensagemNivel = `\n🔥 O JOGO FICOU MAIS DIFÍCIL! O tempo inicial caiu para ${tempoInicial} segundos!`;
             }
-            proximoMarco += 500; // Define o próximo marco (ex: 1000, 1500, 2000...)
+            proximoMarco += 500; 
         }
-        // ----------------------------------------------------
 
         setTimeout(() => {
             alert(`Você acertou! 🎉 +${pontosGanhos} Pontos!\nSua pontuação total é: ${pontuacaoTotal}${mensagemNivel}\n\nPreparando a próxima palavra...`);
