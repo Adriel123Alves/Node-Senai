@@ -167,13 +167,6 @@ function criarTecladoVirtual() {
     });
 }
 
-function verificarPalpite() {
-    console.log("Verificando linha", linhaAtual);
-    // Próximo passo: Lógica de comparar as letras e mudar as cores!
-    linhaAtual++;
-    letraAtual = 0;
-}
-
 function validarChute(palpite, secreta) {
     // Começamos assumindo que todas estão erradas
     const resultado = ['errado', 'errado', 'errado', 'errado', 'errado'];
@@ -216,6 +209,11 @@ function verificarPalpite() {
 
     // 3. PINTAR QUADRADINHOS E TECLADO
     for (let i = 0; i < TAMANHO_PALAVRA; i++) {
+        // --- ESTAS DUAS LINHAS FALTAVAM (Pinta o tabuleiro) ---
+        const quadrado = document.getElementById(`quadrado-${indexBase + i}`);
+        quadrado.classList.add(cores[i]); 
+        // -------------------------------------------------------
+
         const letra = palpite[i];
         const teclaVirtual = document.getElementById(`tecla-${letra}`);
         
@@ -223,7 +221,6 @@ function verificarPalpite() {
             teclaVirtual.classList.add('usada');
         }
     }
-
     // 4. SE GANHOU A RODADA
     if (palpite === palavraSecreta) {
         clearInterval(cronometro); 
