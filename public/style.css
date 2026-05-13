@@ -1,0 +1,211 @@
+/* Paleta de Cores Moderna e Temática (Usando variáveis para facilitar mudanças) */
+:root {
+    --bg-color: #0b0f19; /* Azul bem escuro, quase preto */
+    --text-color: #f8fafc;
+    --box-empty: #1e293b;
+    --box-border: #334155;
+    
+    /* Novas cores para o jogo (Fugindo do Termo clássico) */
+    --color-correct: #0ea5e9; /* Azul Celeste / Neon */
+    --color-partial: #f59e0b; /* Laranja / Âmbar */
+    --color-wrong: #0f172a; /* Azul extremamente escuro */
+    
+    --btn-bg: linear-gradient(135deg, #6366f1, #8b5cf6);
+    --btn-hover: linear-gradient(135deg, #4f46e5, #7c3aed);
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 30px 10px;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    /* Efeito de texto com gradiente moderno */
+    background: -webkit-linear-gradient(#38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+button {
+    background: var(--btn-bg);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+    background: var(--btn-hover);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* O Tabuleiro Modernizado */
+#tabuleiro {
+    display: grid;
+    grid-template-columns: repeat(5, 65px);
+    grid-template-rows: repeat(6, 65px);
+    gap: 12px; /* Espaço um pouco maior entre as caixas */
+    margin-top: 30px;
+}
+
+.quadradinho {
+    background-color: var(--box-empty);
+    border: 2px solid var(--box-border);
+    border-radius: 16px; /* Cantos bem arredondados */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 0.3s ease; /* Animação suave ao mudar de cor */
+}
+
+/* Novas Classes de Validação */
+.correto { 
+    background-color: var(--color-correct); 
+    border-color: var(--color-correct); 
+    /* Leve brilho na caixa correta */
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+    color: white;
+}
+
+.lugar-errado { 
+    background-color: var(--color-partial); 
+    border-color: var(--color-partial); 
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+    color: white;
+}
+
+.errado { 
+    background-color: var(--color-wrong); 
+    border-color: var(--color-wrong);
+    /* Deixa a letra errada um pouco mais apagada */
+    color: #64748b; 
+}
+
+/* --- LAYOUT PRINCIPAL --- */
+/* --- LAYOUT PRINCIPAL --- */
+#game-wrapper {
+    display: grid;
+    /* O minmax(0, 1fr) força as laterais a terem o tamanho exato, centralizando o meio perfeitamente */
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); 
+    align-items: center;
+    gap: 40px; /* Controla a distância do teclado e do painel para o tabuleiro */
+    width: 100%;
+    max-width: 1100px;
+    margin: 20px auto;
+}
+
+/* --- TABULEIRO (Centro) --- */
+#tabuleiro {
+    display: grid;
+    grid-template-columns: repeat(5, 80px); /* Quadradinhos gigantes (80px) */
+    grid-template-rows: repeat(6, 80px);
+    gap: 12px;
+}
+
+/* --- TECLADO VIRTUAL (Esquerda) --- */
+#teclado-virtual {
+    justify-self: end; /* Empurra o teclado para a direita (em direção ao tabuleiro) */
+    display: grid;
+    grid-template-columns: repeat(4, 45px); 
+    gap: 10px;
+    opacity: 0.8;
+}
+
+.tecla {
+    width: 100%; /* Garante que a tecla preencha exatamente a célula do grid, sem vazar */
+    box-sizing: border-box; /* Impede que bordas ou paddings aumentem o tamanho final do botão */
+    
+    background-color: var(--box-empty); /* Mantém a cor de fundo padrão (ou a roxa da sua foto) */
+    border: 1px solid var(--box-border);
+    color: var(--text-color);
+    border-radius: 6px;
+    height: 48px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+    padding: 0; /* Remove o espaçamento interno padrão do navegador para botões */
+}
+
+.tecla:hover {
+    background-color: #475569; /* Cor de destaque ao passar o mouse */
+}
+
+.tecla-larga {
+    grid-column: span 2; /* Ocupa duas colunas */
+    font-size: 0.75rem;
+}
+/* --- CORES ESPECÍFICAS DO TECLADO --- */
+/* Isso impede o bug de especificidade do CSS */
+/* --- CORES ESPECÍFICAS DO TECLADO --- */
+/* --- ESTADO DAS TECLAS USADAS --- */
+.tecla.usada {
+    background-color: #334155; /* Um cinza médio/escuro */
+    border: none;
+    color: #ffffff; /* Texto mais acinzentado */
+    opacity: 0.6;
+    cursor: default; /* Opcional: muda o cursor para mostrar que já foi usada */
+}
+
+/* --- PAINEL HUD (Direita) --- */
+#painel-direito {
+    justify-self: start; /* Encosta ele em direção ao centro (tabuleiro) */
+    padding-left: 20px;  /* Dá uma distância de respiro do tabuleiro */
+}
+
+#hud {
+    display: flex;
+    flex-direction: column; /* Empilha os itens um embaixo do outro */
+    gap: 20px; /* Espaço entre Vidas, Tempo e Pontos */
+    
+    /* O visual baseado na sua imagem */
+    background-color: #1e212b; /* Fundo escuro elegante */
+    padding: 30px;
+    border-radius: 20px; /* Bordas bem arredondadas */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+#hud div {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    display: flex;
+    justify-content: space-between; /* Separa o texto do emoji */
+    align-items: center;
+    gap: 20px; /* Garante que o texto não cole no emoji */
+    white-space: nowrap; /* Impede que o texto quebre de linha */
+}
+
+/* Deixa os valores em destaque (opcional) */
+#hud span {
+    font-weight: 800;
+}
