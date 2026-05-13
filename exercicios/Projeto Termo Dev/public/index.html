@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Termo Roguelike</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #121213; color: white; }
-        button { padding: 10px 20px; font-size: 18px; cursor: pointer; }
-        #palavra-secreta { margin-top: 20px; font-size: 24px; font-weight: bold; color: #538d4e; letter-spacing: 5px; text-transform: uppercase; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Termo Roguelike</h1>
-    <button id="btn-iniciar">Sortear Palavra</button>
     
-    <div id="palavra-secreta"></div>
+    <div id="hud">
+        <div>Vidas: <span id="vidas-display">4</span> ❤️</div>
+        <div>Tempo: <span id="tempo-display">05:00</span> ⏱️</div>
+    </div>
 
-    <script src="app.js"></script>
+    <button id="btn-iniciar">Sortear Nova Palavra</button>
+
+    <div id="tabuleiro"></div>
+
+    <script src="app.js" defer></script>
 </body>
 </html>

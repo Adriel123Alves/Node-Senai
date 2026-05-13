@@ -1,0 +1,123 @@
+/* Paleta de Cores Moderna e Temática (Usando variáveis para facilitar mudanças) */
+:root {
+    --bg-color: #0b0f19; /* Azul bem escuro, quase preto */
+    --text-color: #f8fafc;
+    --box-empty: #1e293b;
+    --box-border: #334155;
+    
+    /* Novas cores para o jogo (Fugindo do Termo clássico) */
+    --color-correct: #0ea5e9; /* Azul Celeste / Neon */
+    --color-partial: #f59e0b; /* Laranja / Âmbar */
+    --color-wrong: #0f172a; /* Azul extremamente escuro */
+    
+    --btn-bg: linear-gradient(135deg, #6366f1, #8b5cf6);
+    --btn-hover: linear-gradient(135deg, #4f46e5, #7c3aed);
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 30px 10px;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    /* Efeito de texto com gradiente moderno */
+    background: -webkit-linear-gradient(#38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Efeito Glassmorphism (Vidro) no HUD */
+#hud {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+button {
+    background: var(--btn-bg);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+    background: var(--btn-hover);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* O Tabuleiro Modernizado */
+#tabuleiro {
+    display: grid;
+    grid-template-columns: repeat(5, 65px);
+    grid-template-rows: repeat(6, 65px);
+    gap: 12px; /* Espaço um pouco maior entre as caixas */
+    margin-top: 30px;
+}
+
+.quadradinho {
+    background-color: var(--box-empty);
+    border: 2px solid var(--box-border);
+    border-radius: 16px; /* Cantos bem arredondados */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 0.3s ease; /* Animação suave ao mudar de cor */
+}
+
+/* Novas Classes de Validação */
+.correto { 
+    background-color: var(--color-correct); 
+    border-color: var(--color-correct); 
+    /* Leve brilho na caixa correta */
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+    color: white;
+}
+
+.lugar-errado { 
+    background-color: var(--color-partial); 
+    border-color: var(--color-partial); 
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+    color: white;
+}
+
+.errado { 
+    background-color: var(--color-wrong); 
+    border-color: var(--color-wrong);
+    /* Deixa a letra errada um pouco mais apagada */
+    color: #64748b; 
+}

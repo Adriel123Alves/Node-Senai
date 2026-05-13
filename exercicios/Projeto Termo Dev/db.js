@@ -25,10 +25,23 @@ export async function pegarPalavra() {
     const client = await connect();
     
     try {
+        // const query = `
+        //     UPDATE repositorio 
+        //     SET inativa = now() 
+        //     WHERE id_palavra = floor(random() * 599 + 1)
+        //     RETURNING palavra;
+        // `;
+
         const query = `
-            UPDATE repositorio 
-            SET inativa = now() 
-            WHERE id_palavra = floor(random() * 599 + 1)
+            UPDATE repositorio
+            SET inativa = now()
+            WHERE id_palavra = (
+                SELECT id_palavra
+                FROM repositorio
+                WHERE id_palavra != floor(random() * 600 + 1)
+                ORDER BY random()
+                LIMIT 1
+            )
             RETURNING palavra;
         `;
         
